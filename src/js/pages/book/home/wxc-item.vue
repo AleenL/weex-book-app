@@ -7,6 +7,12 @@
         <image :src="image"
                class="item-image"
                resize="cover"></image>
+        <text class="item-text" v-if="isTitleString">{{title}}</text>
+        <div class="anther-info">
+            <text class="item-text-des" v-if="isTitleString">{{introduce}}</text>
+            <text class="item-text-anther" >{{anther}}</text>
+        </div>
+
 
         <!--<div class="category-tag" v-if="categoryTag">-->
             <!--<text class="tag-text">{{categoryTag}}</text>-->
@@ -40,7 +46,7 @@
 <style scoped>
     .wxc-item {
         width: 750px;
-        height: 300px;
+        height: 500px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -48,11 +54,8 @@
 
     .item-image {
         width: 700px;
-        height: 400px;
-        margin-top: 24px;
-        margin-left: 24px;
-        margin-bottom: 24px;
-        margin-right: 24px;
+        height: 380px;
+        border-radius: 10px;
     }
 
     .image-desc {
@@ -84,10 +87,44 @@
 
     .item-text {
         font-size: 28px;
-        line-height: 40px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        height:40px;
+        width:700px;
+        text-align: left;
         color: #333333;
+        lines: 1;
+        text-overflow: ellipsis;
+    }
+    .item-text-des{
+        font-size: 22px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        height:60px;
+        width:500px;
+        text-align: left;
+        color: #989898;
         lines: 2;
         text-overflow: ellipsis;
+    }
+
+    .item-text-anther{
+        font-size: 22px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        height:60px;
+        width:150px;
+        text-align: right;
+        color: #515151;
+        lines: 1;
+        text-overflow: ellipsis;
+    }
+
+    .anther-info{
+        width:700px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
     }
 
     .item-price {
@@ -164,9 +201,9 @@
                 type: String,
                 default: ''
             },
-            desc: {
-                type: Array,
-                default: () => ([])
+            introduce: {
+                type: String,
+                default: ""
             },
             priceDesc: {
                 type: [String, Array],

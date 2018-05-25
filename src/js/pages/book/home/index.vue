@@ -8,8 +8,8 @@
                 <indicator class="indicator"></indicator>
             </slider>
             <div class='aa'>
-                <div class='title'>
-                    <text class='titleText' :style="{height:contentOffset+'px'}">与书</text>
+                <div class='title' :style="{height:contentOffset+'px'}">
+                    <image class="title-iamge" resize="cover" src="http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/activity/homeTitle.png"></image>
                 </div>
                 <wxc-tab-page ref="wxc-tab-page" :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="text"
                               :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="110" :spm-c="4307989"
@@ -17,9 +17,9 @@
                 </wxc-tab-page>
             </div>
             <div v-for="(v,index) in dataList" :key="index" class="item-container">
-                <div class="cell" :key="key" :accessible="true" aria-label="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游,价格219元">
+                <div class="cell" :key="key" :accessible="true">
                     <wxc-pan-item  @wxcPanItemPan="wxcPanItemPan">
-                        <wxc-item :image="v.picture" :title="v.title" :desc="desc" :anther="v.﻿anther" price="666"
+                        <wxc-item :image="v.picture" :title="v.title" :introduce="v.introduce" :anther="v.﻿anther" price="666"
                                   price-desc="月售58笔｜999+条评论"/>
                     </wxc-pan-item>
                 </div>
@@ -37,15 +37,18 @@
         overflow: hidden;
         width: 750;
         background-color: rgb(255, 255, 255);
-        border-bottom-width: 1px;
-        border-style: solid;
-        border-color: #112211
-
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .title-iamge{
+        width: 200px;
+        height:60px;
     }
 
     .titleText {
         line-height: 120px;
-        color: #112211;
+        color:#00CBD5;
+        font-size: 30px;
         text-align: center;
     }
 
