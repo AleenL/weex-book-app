@@ -3,14 +3,39 @@
 
 <template>
     <div class="wxc-item">
+        <div v-if="opening.length == 0">
+            <image :src="image"
+                   class="item-image"
+                   resize="cover"></image>
+            <text class="item-text" v-if="isTitleString">{{title}}</text>
 
-        <image :src="image"
-               class="item-image"
-               resize="cover"></image>
-        <text class="item-text" v-if="isTitleString">{{title}}</text>
-        <div class="anther-info">
-            <text class="item-text-des" v-if="isTitleString">{{introduce}}</text>
-            <text class="item-text-anther" >{{anther}}</text>
+            <div class="anther-info">
+                <text class="item-text-des" v-if="isTitleString">{{introduce}}</text>
+                <text class="item-text-anther" >{{anther}}</text>
+            </div>
+        </div>
+        <div v-else>
+            <div class="item-image">
+                <image :src="image"
+                       class="item-image"
+                       resize="cover"></image>
+                <div :class='[openging=="opening"?"opening":"closed"]'>
+
+                </div>
+            </div>
+
+            <div class="activity-info">
+                <text class="activity-title" v-if="isTitleString">{{title}}</text>
+                <div class="activity-cost">
+                    <text class="cost-head">￥</text>
+                    <text class="cost-show">34</text>
+                </div>
+            </div>
+
+            <div class="anther-info">
+                <text class="item-address-des" v-if="isTitleString">{{introduce}}</text>
+                <text class="item-text-anther address" >{{address}}</text>
+            </div>
         </div>
 
 
@@ -96,6 +121,29 @@
         lines: 1;
         text-overflow: ellipsis;
     }
+    .activity-title{
+        font-size: 28px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        height:40px;
+        width:600px;
+        text-align: left;
+        color: #333333;
+        lines: 1;
+        text-overflow: ellipsis;
+    }
+    .activity {
+        font-size: 28px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        height:40px;
+        width:50px;
+        text-align: left;
+        color: #333333;
+        lines: 1;
+        text-overflow: ellipsis;
+    }
+
     .item-text-des{
         font-size: 22px;
         padding-top:10px;
@@ -106,6 +154,30 @@
         color: #989898;
         lines: 2;
         text-overflow: ellipsis;
+    }
+    .item-address-des{
+        font-size: 22px;
+        padding-top:10px;
+        padding-bottom: 10px;
+        height:60px;
+        width:400px;
+        text-align: left;
+        color: #989898;
+        lines: 1;
+        text-overflow: ellipsis;
+    }
+
+    .cost-head{
+        font-size: 24px;
+        color:#FF4C42;
+        font-weight: 900;
+        margin-top: 8px;
+    }
+
+    .cost-show{
+        font-size: 32px;
+        color:#FF4C42;
+        font-weight: 900;
     }
 
     .item-text-anther{
@@ -120,11 +192,34 @@
         text-overflow: ellipsis;
     }
 
+    .address{
+        color: #00CBD5;
+        width: 250px;
+    }
+
     .anther-info{
         width:700px;
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
+    }
+
+    .activity-cost{
+        color:#FF4C42;
+        font-size: 30px;
+        width:50px;
+        justify-content: flex-end;
+        align-content: flex-end;
+        flex-direction: row;
+
+    }
+
+    .activity-info{
+        width:700px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        height:50px;
     }
 
     .item-price {
@@ -225,9 +320,13 @@
                 type: String,
                 default: ''
             },
-            extId: {
-                type: [String, Number],
-                default: 0
+            address: {
+                type: String,
+                default: ''
+            },
+            opening: {
+                type: String,
+                default: ''
             }
         },
         data: () => ({

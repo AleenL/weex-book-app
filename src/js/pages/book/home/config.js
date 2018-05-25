@@ -28,7 +28,7 @@ export default {
     hasActiveBottom: true,
     activeBottomColor: '#00C4D1',
     activeBottomHeight: 10,
-    activeBottomWidth: 250,
+    activeBottomWidth: 100,
     textPaddingLeft: 10,
     textPaddingRight: 10
   },

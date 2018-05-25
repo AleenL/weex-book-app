@@ -20,7 +20,7 @@
                 <div class="cell" :key="key" :accessible="true">
                     <wxc-pan-item  @wxcPanItemPan="wxcPanItemPan">
                         <wxc-item :image="v.picture" :title="v.title" :introduce="v.introduce" :anther="v.﻿anther" price="666"
-                                  price-desc="月售58笔｜999+条评论"/>
+                                  :opening="v.opening" :address="v.address"/>
                     </wxc-pan-item>
                 </div>
             </div>
