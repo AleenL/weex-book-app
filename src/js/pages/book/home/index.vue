@@ -1,7 +1,5 @@
-
 <template>
     <div class='wrapper'>
-
         <scroller @scroll="recylerScroll">
             <slider class="slider" interval="3000" auto-play="false" :index="0">
                 <div class="frame" v-for="(img, idx) in imageList" @click="bannerRouter(idx)">
@@ -9,17 +7,20 @@
                 </div>
                 <indicator class="indicator"></indicator>
             </slider>
-<div class='aa'>
-  <div class='title'><text class='titleText'  :style="{height:contentOffset+'px'}">与书</text></div>
-<wxc-tab-page ref="wxc-tab-page"  :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="text" :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="110" :spm-c="4307989" @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
-            </wxc-tab-page>
-</div>
-
-
+            <div class='aa'>
+                <div class='title'>
+                    <text class='titleText' :style="{height:contentOffset+'px'}">与书</text>
+                </div>
+                <wxc-tab-page ref="wxc-tab-page" :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="text"
+                              :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="110" :spm-c="4307989"
+                              @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
+                </wxc-tab-page>
+            </div>
             <div v-for="(v,index) in dataList" :key="index" class="item-container">
-                <div  class="cell" :key="key" :accessible="true" aria-label="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游,价格219元">
-                    <wxc-pan-item url="https://h5.m.taobao.com/trip/ticket/detail/index.html?scenicId=2675" @wxcPanItemPan="wxcPanItemPan">
-                        <wxc-item :image="v.picture" :title="v.title" :desc="desc" :tags="tags" price="666" price-desc="月售58笔｜999+条评论" />
+                <div class="cell" :key="key" :accessible="true" aria-label="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游,价格219元">
+                    <wxc-pan-item  @wxcPanItemPan="wxcPanItemPan">
+                        <wxc-item :image="v.picture" :title="v.title" :desc="desc" :anther="v.﻿anther" price="666"
+                                  price-desc="月售58笔｜999+条评论"/>
                     </wxc-pan-item>
                 </div>
             </div>
@@ -28,169 +29,171 @@
 </template>
 <style scoped>
 
-.aa{
-  position: sticky;
-}
-.title{
-  overflow:hidden;
-  width: 750;
-  background-color: rgb(255,255,255);
-  border-bottom-width: 1px;
-  border-style: solid;
-  border-color:#112211
+    .aa {
+        position: sticky;
+    }
 
-}
-.titleText{
-  line-height:120px;
-  color: #112211;
-  text-align: center;
-}
-.wrapper{
-  padding-bottom: 90px;
-}
+    .title {
+        overflow: hidden;
+        width: 750;
+        background-color: rgb(255, 255, 255);
+        border-bottom-width: 1px;
+        border-style: solid;
+        border-color: #112211
 
+    }
 
-.wxc-item:last-child{
-    padding-bottom: 40px;
-  }
+    .titleText {
+        line-height: 120px;
+        color: #112211;
+        text-align: center;
+    }
 
-.item-container {
-    width: 750px;
-    background-color: #fff;
-}
+    .wrapper {
+        padding-bottom: 90px;
+    }
 
-.border-cell {
-    background-color: #f2f3f4;
-    width: 750px;
-    height: 24px;
-    align-items: center;
-    justify-content: center;
-    border-bottom-width: 1px;
-    border-style: solid;
-    border-color: #e0e0e0;
-}
+    .wxc-item:last-child {
+        padding-bottom: 40px;
+    }
 
-.cell {
-    background-color: #ffffff;
-}
+    .item-container {
+        width: 750px;
+        background-color: #fff;
+    }
 
-.image {
-    width: 750px;
-    height: 450px;
-}
+    .border-cell {
+        background-color: #f2f3f4;
+        width: 750px;
+        height: 24px;
+        align-items: center;
+        justify-content: center;
+        border-bottom-width: 1px;
+        border-style: solid;
+        border-color: #e0e0e0;
+    }
 
-.slider {
-    width: 750px;
-    height: 450px;
-}
+    .cell {
+        background-color: #ffffff;
+    }
 
-.frame {
-    width: 700px;
-    height: 450px;
-    position: relative;
-}
+    .image {
+        width: 750px;
+        height: 450px;
+    }
 
-.login_page {
-    flex: 1;
-    width: 750;
-    background-color: #fff;
-}
+    .slider {
+        width: 750px;
+        height: 450px;
+    }
 
-.title-bg1 {
-    width: 750px;
-    height: 450px;
-}
+    .frame {
+        width: 700px;
+        height: 450px;
+        position: relative;
+    }
 
-.indicator {
-    width: 750px;
-    height: 100px;
-    item-color: rgba(255, 255, 255, 0.2);
-    item-selected-color: rgba(255, 255, 255, 0.4);
-    item-size: 15px;
-    position: absolute;
-    top: 370px;
-}
+    .login_page {
+        flex: 1;
+        width: 750;
+        background-color: #fff;
+    }
+
+    .title-bg1 {
+        width: 750px;
+        height: 450px;
+    }
+
+    .indicator {
+        width: 750px;
+        height: 100px;
+        item-color: rgba(255, 255, 255, 0.2);
+        item-selected-color: rgba(255, 255, 255, 0.4);
+        item-size: 15px;
+        position: absolute;
+        top: 370px;
+    }
 
 </style>
 <script>
-const dom = weex.requireModule('dom');
-import { WxcTabPage, WxcPanItem, Utils, BindEnv } from 'weex-ui';
-import { homeList } from '../services/article'
-import WxcItem from './wxc-item.vue';
-import Config from './config'
-import { setTitle } from '../_mods/set-nav';
-export default {
-    components: { WxcTabPage, WxcPanItem, WxcItem },
-    data: () => ({
-        imageList: [
-            { src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner_item1.png' },
-            { src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner_item2.png' },
-            { src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner_item1.png' }
-        ],
-        tabTitles: Config.tabTitles,
-        tabStyles: Config.tabStyles,
-        tabList: [],
-        tabStyle:['withBook','bookReview','activity'],
-        needSlider: true,
-        demoList: [1, 2, 3, 4, 5, 6],
-        supportSlide: true,
-        isTabView: true,
-        tabPageHeight: 0,
-        contentOffset:0,
-        dataList:[],
-        desc: [{
-            type: 'text',
-            value: '特价机票|班期:清明 3/27-4/2等',
-            theme: 'gray'
-        }],
-        tags: [{
-            type: 'tag',
-            value: '满100减20测试',
-            theme: 'yellow'
-        }]
-    }),
-    created() {
+    const dom = weex.requireModule('dom');
+    import {WxcTabPage, WxcPanItem, Utils, BindEnv} from 'weex-ui';
+    import {homeList} from '../services/article'
+    import WxcItem from './wxc-item.vue';
+    import Config from './config'
+    import {setTitle} from '../_mods/set-nav';
 
-//
-        homeList({style: 'withBook'}, (data) => {
-            this.dataList = data.data
-        }, (data) => {
-            console.log('获取文章出错',data)
-        })
-    },
-    methods: {
-      recylerScroll: function(e) {
-        if(e.contentOffset.y>-360 && e.contentOffset.y<0){
-          this.contentOffset = e.contentOffset.y*-0.25
-        }else if(e.contentOffset.y>=0){
-          this.contentOffset = 0
-        }else{
-          this.contentOffset = 90
-        }
+    export default {
+        components: {WxcTabPage, WxcPanItem, WxcItem},
+        data: () => ({
+            imageList: [
+                {src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner_item1.png'},
+                {src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner_item2.png'},
+                {src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner_item1.png'}
+            ],
+            tabTitles: Config.tabTitles,
+            tabStyles: Config.tabStyles,
+            tabList: [],
+            tabStyle: ['withBook', 'bookReview', 'activity'],
+            needSlider: true,
+            demoList: [1, 2, 3, 4, 5, 6],
+            supportSlide: true,
+            isTabView: true,
+            tabPageHeight: 0,
+            contentOffset: 0,
+            dataList: [],
+            desc: [{
+                type: 'text',
+                value: '特价机票|班期:清明 3/27-4/2等',
+                theme: 'gray'
+            }],
+            tags: [{
+                type: 'tag',
+                value: '满100减20测试',
+                theme: 'yellow'
+            }]
+        }),
+        created() {
 
-      },
-        wxcTabPageCurrentTabSelected(e) {
-            const self = this;
-            console.log(e.page)
-            const style = (this.tabStyle[e.page])
-            homeList({style: style}, (data) => {
-                self.dataList = data.data
+            homeList({style: 'withBook'}, (data) => {
+                this.dataList = data.data
             }, (data) => {
-                console.log('获取文章出错',data)
+                console.log('获取文章出错', data)
             })
         },
-        wxcPanItemPan(e) {
-            if (BindEnv.supportsEBForAndroid()) {
-                this.$refs['wxc-tab-page'].bindExp(e.element);
+        methods: {
+            recylerScroll: function (e) {
+                if (e.contentOffset.y > -360 && e.contentOffset.y < 0) {
+                    this.contentOffset = e.contentOffset.y * -0.25
+                } else if (e.contentOffset.y >= 0) {
+                    this.contentOffset = 0
+                } else {
+                    this.contentOffset = 90
+                }
+
+            },
+            wxcTabPageCurrentTabSelected(e) {
+                const self = this;
+                console.log(e.page)
+                const style = (this.tabStyle[e.page])
+                homeList({style: style}, (data) => {
+                    self.dataList = data.data
+                }, (data) => {
+                    console.log('获取文章出错', data)
+                })
+            },
+            wxcPanItemPan(e) {
+                if (BindEnv.supportsEBForAndroid()) {
+                    this.$refs['wxc-tab-page'].bindExp(e.element);
+                }
+            },
+            bannerRouter(index) {
+                this.$router.open({
+                    name: 'bannerArticle',
+                    params: {artIndex: index}
+                })
             }
-        },
-        bannerRouter(index) {
-            this.$router.open({
-                name: 'bannerArticle',
-                params: { artIndex: index }
-            })
         }
-    }
-};
+    };
 
 </script>
