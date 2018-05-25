@@ -3,18 +3,20 @@ export default {
   tabTitles: [
     {
       title: '书评',
+        style:'withBook'
     },
     {
-      title: '读书'
+      title: '读书',
+        style:'bookReview'
     },
     {
       title: '活动',
+        style:'activity'
     }
   ],
   tabStyles: {
     bgColor: '#FFFFFF',
     titleColor: '#666666',
-
     activeTitleColor: '#00C4D1',
     activeBgColor: '#FFFFFF',
     isActiveTitleBold: true,

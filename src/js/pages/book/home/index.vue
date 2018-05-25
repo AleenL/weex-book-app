@@ -1,7 +1,7 @@
 
 <template>
     <div class='wrapper'>
-      
+
         <scroller @scroll="recylerScroll">
             <slider class="slider" interval="3000" auto-play="false" :index="0">
                 <div class="frame" v-for="(img, idx) in imageList" @click="bannerRouter(idx)">
@@ -12,14 +12,14 @@
 <div class='aa'>
   <div class='title'><text class='titleText'  :style="{height:contentOffset+'px'}">与书</text></div>
 <wxc-tab-page ref="wxc-tab-page"  :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="text" :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="110" :spm-c="4307989" @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
-            </wxc-tab-page>  
+            </wxc-tab-page>
 </div>
-            
 
-            <div v-for="(v,index) in tabList" :key="index" class="item-container">
-                <div v-for="(demo,key) in v" class="cell" :key="key" :accessible="true" aria-label="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游,价格219元">
+
+            <div v-for="(v,index) in dataList" :key="index" class="item-container">
+                <div  class="cell" :key="key" :accessible="true" aria-label="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游,价格219元">
                     <wxc-pan-item url="https://h5.m.taobao.com/trip/ticket/detail/index.html?scenicId=2675" @wxcPanItemPan="wxcPanItemPan">
-                        <wxc-item image="https://gw.alicdn.com/i1/2935198750/TB26GMgeOC9MuFjSZFoXXbUzFXa_!!2935198750.jpg" :image-text="tabTitles[index].title" title="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游" :desc="desc" :tags="tags" price="666" price-desc="月售58笔｜999+条评论" />
+                        <wxc-item :image="v.picture" :title="v.title" :desc="desc" :tags="tags" price="666" price-desc="月售58笔｜999+条评论" />
                     </wxc-pan-item>
                 </div>
             </div>
@@ -32,13 +32,13 @@
   position: sticky;
 }
 .title{
-  overflow:hidden; 
+  overflow:hidden;
   width: 750;
   background-color: rgb(255,255,255);
   border-bottom-width: 1px;
   border-style: solid;
   border-color:#112211
-  
+
 }
 .titleText{
   line-height:120px;
@@ -115,6 +115,7 @@
 <script>
 const dom = weex.requireModule('dom');
 import { WxcTabPage, WxcPanItem, Utils, BindEnv } from 'weex-ui';
+import { homeList } from '../services/article'
 import WxcItem from './wxc-item.vue';
 import Config from './config'
 import { setTitle } from '../_mods/set-nav';
@@ -129,12 +130,14 @@ export default {
         tabTitles: Config.tabTitles,
         tabStyles: Config.tabStyles,
         tabList: [],
+        tabStyle:['withBook','bookReview','activity'],
         needSlider: true,
         demoList: [1, 2, 3, 4, 5, 6],
         supportSlide: true,
         isTabView: true,
         tabPageHeight: 0,
         contentOffset:0,
+        dataList:[],
         desc: [{
             type: 'text',
             value: '特价机票|班期:清明 3/27-4/2等',
@@ -147,10 +150,13 @@ export default {
         }]
     }),
     created() {
-        setTitle('TabPage');
 
-        this.tabList = [...Array(this.tabTitles.length).keys()].map(i => []);
-        Vue.set(this.tabList, 0, this.demoList);
+//
+        homeList({style: 'withBook'}, (data) => {
+            this.dataList = data.data
+        }, (data) => {
+            console.log('获取文章出错',data)
+        })
     },
     methods: {
       recylerScroll: function(e) {
@@ -165,15 +171,13 @@ export default {
       },
         wxcTabPageCurrentTabSelected(e) {
             const self = this;
-            const index = e.page;
-            /* 未加载tab模拟数据请求 */
-            if (!Utils.isNonEmptyArray(self.tabList[index])) {
-                setTimeout(() => {
-                    self.tabList = []
-                    Vue.set(self.tabList, index, self.demoList);
-
-                }, 100);
-            }
+            console.log(e.page)
+            const style = (this.tabStyle[e.page])
+            homeList({style: style}, (data) => {
+                self.dataList = data.data
+            }, (data) => {
+                console.log('获取文章出错',data)
+            })
         },
         wxcPanItemPan(e) {
             if (BindEnv.supportsEBForAndroid()) {

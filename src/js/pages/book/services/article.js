@@ -5,3 +5,8 @@ import http from '../utils/http'
 export function bannerArt ({ index }, successBack, errorBack) {
     http.postAjax('bannerArt', { index }, successBack, errorBack)
 }
+
+//获取首页的三个title列表
+export function homeList({ style }, successBack, errorBack){
+    http.postAjax('homeList', { style }, successBack, errorBack)
+}
