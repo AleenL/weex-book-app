@@ -12,12 +12,12 @@
             :has-top-border="true"></wxc-cell>
         <wxc-cell title="本地 ttf:"
             :has-top-border="true">
-            
+
               <text class="title2" style='width:500px'> &#xe606;&#xe605;&#xe604;&#xe603;&#xe602;&#xe601;&#xe600;</text>
             </wxc-cell>
             <wxc-cell title="本地 woff:"
             :has-top-border="true">
-            
+
               <text class="title3" style='width:500px'> &#xe606;&#xe605;&#xe604;&#xe603;&#xe602;&#xe601;&#xe600;</text>
             </wxc-cell>
     </scroller>
@@ -27,7 +27,7 @@ import { WxcCell } from 'weex-ui'
 import Title from '../_mods/title'
 import Category from '../_mods/category'
 export default {
-    components: { WxcCell, Title, Category }, 
+    components: { WxcCell, Title, Category },
     beforeCreate () {
       var domModule = weex.requireModule('dom');
       // 目前支持ttf、woff文件，不支持svg、eot类型,moreItem at http://www.iconfont.cn/

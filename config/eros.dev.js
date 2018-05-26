@@ -13,6 +13,7 @@ module.exports = {
         'js/pages/book/login/index.vue',
         'js/pages/book/home/index.vue',
         'js/pages/book/bannerArticle/index.vue',
+        'js/pages/book/zone/index.vue',
         // 'js/pages/demo/lifecycle/index.vue',
         // 'js/pages/demo/assets/index.vue',
         // 'js/pages/demo/globalAttr/index.vue',

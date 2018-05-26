@@ -110,7 +110,7 @@
 
             },
             goInfo () {
-                
+
                 if (!this.spwd) {
                     this.$notice.toast({
                         message: '请填写密码!',
@@ -125,7 +125,7 @@
                 	})
                 	return false
                 }
-                
+
                 loginSeller({username: this.userName, password: this.spwd}, (data) => {
                     console.log('datad的内容是：',data)
                     this.$notice.toast({
@@ -142,7 +142,7 @@
                     this.$notice.toast({
                         message: data.data,
                         duration: 1
-                    })                    
+                    })
                 })
             }
         }

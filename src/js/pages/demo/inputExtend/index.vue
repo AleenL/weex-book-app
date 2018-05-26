@@ -17,7 +17,7 @@ import { WxcCell } from 'weex-ui'
 import Title from '../_mods/title'
 import Category from '../_mods/category'
 export default {
-    components: { WxcCell, Title, Category }, 
+    components: { WxcCell, Title, Category },
     beforeCreate () {
       var domModule = weex.requireModule('dom');
       // 目前支持ttf、woff文件，不支持svg、eot类型,moreItem at http://www.iconfont.cn/
@@ -27,7 +27,7 @@ export default {
         'src': 'url(\'bmlocal://iconfont/font_1469606063_76593.ttf\')'
       });
       domModule.addRule('fontFace', {
-        'fontFamily': 'iconfont3',
+        'fontFamily': 'iconfont2',
         'src': 'url(\'bmlocal://iconfont/font_1469606522_9417143.woff\')'
       })
     }

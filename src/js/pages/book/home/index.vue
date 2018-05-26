@@ -60,6 +60,7 @@
         padding-bottom: 40px;
     }
 
+
     .item-container {
         width: 750px;
         background-color: #fff;

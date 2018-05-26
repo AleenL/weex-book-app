@@ -8,8 +8,8 @@
             <div v-else>
                 <text class="bar-ic iconfont"  :class="[pIndexKey == i.key ? `bar-active` : ``]"  v-if="pIndexKey == i.key">{{i.activeicon}}</text>
                 <text class="bar-update iconfont" v-else>{{i.icon}}</text>
-            </div>            
-            
+            </div>
+
         </div>
     </div>
 </template>
@@ -38,7 +38,7 @@ export default {
         const domModule = weex.requireModule('dom');
         domModule.addRule('fontFace', {
             'fontFamily': 'iconfont',
-            'src': 'url(\'bmlocal://iconfont/iconfont2.ttf\')'
+            'src': 'url(\'bmlocal://iconfont/iconfont.ttf\')'
         });
     },
     created () {

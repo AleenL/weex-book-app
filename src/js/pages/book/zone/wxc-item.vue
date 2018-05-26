@@ -40,30 +40,30 @@
 
 
         <!--<div class="category-tag" v-if="categoryTag">-->
-            <!--<text class="tag-text">{{categoryTag}}</text>-->
+        <!--<text class="tag-text">{{categoryTag}}</text>-->
         <!--</div>-->
 
         <!--<div class="image-desc" v-if="imageText">-->
-            <!--<text class="image-text">{{imageText}}</text>-->
+        <!--<text class="image-text">{{imageText}}</text>-->
         <!--</div>-->
 
         <!--<div class="item-content">-->
-            <!--<text class="item-text" v-if="isTitleString">{{title}}</text>-->
-            <!--<text class="item-text" v-if="isTitleString">{{anther}}</text>-->
-            <!--<wxc-special-rich-text :config-list="title" v-else></wxc-special-rich-text>-->
+        <!--<text class="item-text" v-if="isTitleString">{{title}}</text>-->
+        <!--<text class="item-text" v-if="isTitleString">{{anther}}</text>-->
+        <!--<wxc-special-rich-text :config-list="title" v-else></wxc-special-rich-text>-->
 
-            <!--<wxc-rich-text :config-list="desc"></wxc-rich-text>-->
+        <!--<wxc-rich-text :config-list="desc"></wxc-rich-text>-->
 
-            <!--<wxc-rich-text :config-list="tags"></wxc-rich-text>-->
+        <!--<wxc-rich-text :config-list="tags"></wxc-rich-text>-->
 
-            <!--<div class="item-price">-->
-                <!--<wxc-rich-text :config-list="priceDesc"></wxc-rich-text>-->
-                <!--<div class="price-num">-->
-                    <!--<text class="yen">{{yenSymbol}}</text>-->
-                    <!--<text class="price">{{price}}</text>-->
-                    <!--<text class="postfix" v-if="postfix">起</text>-->
-                <!--</div>-->
-            <!--</div>-->
+        <!--<div class="item-price">-->
+        <!--<wxc-rich-text :config-list="priceDesc"></wxc-rich-text>-->
+        <!--<div class="price-num">-->
+        <!--<text class="yen">{{yenSymbol}}</text>-->
+        <!--<text class="price">{{price}}</text>-->
+        <!--<text class="postfix" v-if="postfix">起</text>-->
+        <!--</div>-->
+        <!--</div>-->
         <!--</div>-->
     </div>
 </template>

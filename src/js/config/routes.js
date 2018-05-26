@@ -8,7 +8,11 @@ export default {
     'index': {
         title: ' ',
         url: '/pages/book/index.js',
-    },    
+    },
+    'zone': {
+      title:'',
+      url: '/pages/book/zone/index.js'
+    },
     'regist': {
         title: '即刻注册',
         url: '/pages/book/regist/index.js',
@@ -29,7 +33,7 @@ export default {
     'main': {//tabbar
         title: '',
         url: '/pages/book/main.js'
-    },    
+    },
     'demo': {
         title: 'weex-eros demo',
         url: '/pages/demo/index.js'

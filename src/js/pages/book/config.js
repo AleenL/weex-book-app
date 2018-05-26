@@ -8,9 +8,9 @@ export const tabConfig = [{
 }, {
     icon: '\ue60b',
     activeicon: '\ue60b',
-    name: "订单管理",
+    name  : "圈子",
     key: 'topic',
-    src: `${weex.config.eros.jsServer}/dist/js/pages/book/home/index.js`,
+    src: `${weex.config.eros.jsServer}/dist/js/pages/book/zone/index.js`,
     visibility: 'hidden'
 }, {
     icon: '\ue60c',
