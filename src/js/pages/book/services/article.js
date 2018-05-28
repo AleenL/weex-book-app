@@ -10,3 +10,8 @@ export function bannerArt ({ index }, successBack, errorBack) {
 export function homeList({ style }, successBack, errorBack){
     http.postAjax('homeList', { style }, successBack, errorBack)
 }
+
+//获取圈子的列表
+export function zoneList({ city }, successBack, errorBack){
+  http.postAjax('zoneList', {city}, successBack, errorBack)
+}

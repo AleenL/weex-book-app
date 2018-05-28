@@ -3,68 +3,25 @@
 
 <template>
     <div class="wxc-item">
-        <div v-if="opening.length == 0">
-            <image :src="image"
+        <div >
+            <image :src="picture"
                    class="item-image"
                    resize="cover"></image>
-            <text class="item-text" v-if="isTitleString">{{title}}</text>
-
-            <div class="anther-info">
-                <text class="item-text-des" v-if="isTitleString">{{introduce}}</text>
-                <text class="item-text-anther" >{{anther}}</text>
-            </div>
         </div>
-        <div v-else>
-            <div class="item-image-cover">
-                <image :src="image"
-                       class="item-image"
-                       resize="cover"></image>
-                <div :class='[opening=="opening"?"opening":"closed"]' class="status-bg">
-                    <text class="status-color">{{opening}}</text>
-                </div>
-            </div>
-
-            <div class="activity-info">
-                <text class="activity-title" v-if="isTitleString">{{title}}</text>
-                <div class="activity-cost">
-                    <text class="cost-head">￥</text>
-                    <text class="cost-show">34</text>
-                </div>
-            </div>
-
-            <div class="anther-info">
-                <text class="item-address-des" v-if="isTitleString">{{introduce}}</text>
-                <text class="item-text-anther address" >{{address}}</text>
-            </div>
+        <div class="activity-info">
+            <text class="item-address-des" >{{title}}</text>
+            <text class="item-text-anther address">{{address}}</text>
         </div>
-
-
-        <!--<div class="category-tag" v-if="categoryTag">-->
-        <!--<text class="tag-text">{{categoryTag}}</text>-->
-        <!--</div>-->
-
-        <!--<div class="image-desc" v-if="imageText">-->
-        <!--<text class="image-text">{{imageText}}</text>-->
-        <!--</div>-->
-
-        <!--<div class="item-content">-->
-        <!--<text class="item-text" v-if="isTitleString">{{title}}</text>-->
-        <!--<text class="item-text" v-if="isTitleString">{{anther}}</text>-->
-        <!--<wxc-special-rich-text :config-list="title" v-else></wxc-special-rich-text>-->
-
-        <!--<wxc-rich-text :config-list="desc"></wxc-rich-text>-->
-
-        <!--<wxc-rich-text :config-list="tags"></wxc-rich-text>-->
-
-        <!--<div class="item-price">-->
-        <!--<wxc-rich-text :config-list="priceDesc"></wxc-rich-text>-->
-        <!--<div class="price-num">-->
-        <!--<text class="yen">{{yenSymbol}}</text>-->
-        <!--<text class="price">{{price}}</text>-->
-        <!--<text class="postfix" v-if="postfix">起</text>-->
-        <!--</div>-->
-        <!--</div>-->
-        <!--</div>-->
+        <div>
+            <text class="zone-des">{{des}}</text>
+        </div>
+        <div class="zone-info">
+            <div class="people">
+                <text class="people-number">{{people}}个圈友</text>
+                <image class="people-icon" :src="icon"></image>
+            </div>
+            <text class="join-us">加入我们</text>
+        </div>
     </div>
 </template>
 
@@ -75,6 +32,28 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+    .people{
+        width: 150px;
+        height:40px;
+        justify-content: space-between;
+        align-items: flex-end;
+        flex-direction: row;
+    }
+    .people-number{
+        font-size: 24px;
+        color:#00C4D1;
+    }
+
+    .people-icon{
+        width:30px;
+        height:30px;
+    }
+    .zone-info{
+        justify-content: space-between;
+        align-items: center;
+        width:700px;
+        flex-direction: row;
     }
     .item-image-cover{
         width: 700px;
@@ -132,14 +111,25 @@
         justify-content: space-between;
         padding-top: 24px;
         padding-right: 24px;
-        padding-bottom: 18px;
+        padding-bottom: 10px;
     }
-
+    .join-us{
+        width:120px;
+        height:40px;
+        background-color: #00C4D1;
+        color:#fff;
+        font-size: 24px;
+        font-weight: 700;
+        border-radius: 4px;
+        line-height: 40px;
+        text-align: center;
+    }
     .item-text {
-        font-size: 28px;
+        font-size: 32px;
         padding-top:10px;
         padding-bottom: 10px;
-        height:40px;
+        height:50px;
+        line-height:50px;
         width:700px;
         text-align: left;
         color: #333333;
@@ -157,16 +147,14 @@
         lines: 1;
         text-overflow: ellipsis;
     }
-    .activity {
-        font-size: 28px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        height:40px;
-        width:50px;
+    .zone-des {
+        font-size: 24px;
+        width:700px;
         text-align: left;
-        color: #333333;
+        padding-top:20px;
         lines: 1;
         text-overflow: ellipsis;
+        color: #00C4D1;
     }
 
     .item-text-des{
@@ -181,14 +169,11 @@
         text-overflow: ellipsis;
     }
     .item-address-des{
-        font-size: 22px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        height:60px;
+        font-size: 30px;
         width:400px;
         text-align: left;
-        color: #989898;
-        lines: 1;
+        color: #221;
+        font-weight: 700;
         text-overflow: ellipsis;
     }
 
@@ -207,19 +192,15 @@
 
     .item-text-anther{
         font-size: 22px;
-        padding-top:10px;
-        padding-bottom: 10px;
-        height:60px;
         width:150px;
         text-align: right;
-        color: #515151;
         lines: 1;
         text-overflow: ellipsis;
     }
 
     .address{
-        color: #00CBD5;
-        width: 250px;
+        color: #221;
+        font-weight: 700;
     }
 
     .anther-info{
@@ -242,9 +223,9 @@
     .activity-info{
         width:700px;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-end;
         flex-direction: row;
-        height:50px;
+        height:70px;
     }
 
     .item-price {
@@ -313,35 +294,15 @@
                 type: [String, Array],
                 default: ''
             },
-            imageText: {
-                type: String,
-                default: ''
-            },
-            image: {
-                type: String,
-                default: ''
-            },
-            introduce: {
-                type: String,
-                default: ""
-            },
-            priceDesc: {
+            picture: {
                 type: [String, Array],
-                default: ''
+                dafault:''
             },
-            price: {
-                type: [String, Number],
-                default: 0
-            },
-            anther: {
+            title: {
                 type: String,
                 default: ''
             },
-            postfix: {
-                type: Boolean,
-                default: false
-            },
-            categoryTag: {
+            des: {
                 type: String,
                 default: ''
             },
@@ -349,7 +310,11 @@
                 type: String,
                 default: ''
             },
-            opening: {
+            people: {
+                type: String,
+                dafault:''
+            },
+            icon: {
                 type: String,
                 default: ''
             }

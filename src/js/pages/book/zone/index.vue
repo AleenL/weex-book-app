@@ -1,22 +1,28 @@
 <template>
-    <div class="flex-fluid">
-        <image class="zone-header-title" src="http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/activity/zone-title.png"></image>
-        <div class="zone-info">
-            <text class="zone-title">读书圈子</text>
-            <text class="bar-ic iconfont" >&#xe633;</text>
+    <scroller>
+        <div class="title-photo">
+            <image class="zone-header-title" src="http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/activity/zone-title.png"></image>
         </div>
-        <div class="city-info">
-            <text class="city-title">你选择的城市 重庆</text>
-            <text class="city-choose" >+</text>
-        </div>
-    </div>
-    <div v-for="(v,index) in dataList" :key="index" class="item-container">
-        <div class="cell" :key="key" :accessible="true">
-            <wxc-pan-item  @wxcPanItemPan="wxcPanItemPan">
-                <wxc-item :image="v.picture" :title="v.title" :des="v.des" :icon="v.﻿icon" :address="v.address"/>
-            </wxc-pan-item>
-        </div>
-    </div>
+
+            <div class="zone-info">
+                <text class="zone-title">读书圈子</text>
+                <text class="bar-ic iconfont" >&#xe633;</text>
+            </div>
+            <div class="city-info">
+                <text class="city-title">你选择的城市 重庆</text>
+                <text class="city-choose" >+</text>
+            </div>
+            <div class="border-shadow"></div>
+            <div v-for="(v,index) in zoneData" :key="index" class="item-container">
+                <div class="cell" :key="key" :accessible="true">
+                    <wxc-pan-item  @wxcPanItemPan="wxcPanItemPan">
+                        <wxc-item :picture="v.picture" :title="v.title" :des="v.des" :icon="v.﻿icon" :address="v.address" :people="v.people"/>
+                    </wxc-pan-item>
+                </div>
+            </div>
+
+    </scroller>
+
 </template>
 
 <style>
@@ -24,28 +30,34 @@
         font-family: iconfont;
     }
 
-    .flex-fluid{
+    .title-photo{
         width:750px;
+        height:230px;
         justify-content: flex-start;
         align-items: center;
-        height:430px;
         background-color: #fff;
-        box-shadow: 2px 2px 10px #ccc;
     }
     .zone-header-title{
         width:700px;
         height:180px;
         margin-top: 50px;
+
     }
     .zone-info{
-        width:680px;
+        width:750px;
         height:120px;
         flex-direction: row;
         justify-content: space-between;
+        position: sticky;
         align-items: center;
+        padding-left:30px;
+        padding-right:30px;
+        padding-top: 30px;
         border-bottom-style: solid;
         border-bottom-color: #ccc;
         border-bottom-width: 1px;
+        background-color: #fff;
+
     }
     .zone-title{
         font-size: 42px;
@@ -59,11 +71,16 @@
         margin-right:10px;
     }
     .city-info{
-        width:680px;
+        width:750px;
         height:80px;
         flex-direction: row;
+        padding-left:30px;
+        padding-right:30px;
         justify-content: space-between;
         align-items: center;
+        background-color: #fff;
+        box-shadow: 1px 1px 20px #ccc;
+
     }
     .city-title{
         font-size: 24px;
@@ -76,9 +93,42 @@
         font-weight: 900;
         margin-right: 10px;
     }
+    .item-container{
+        padding-bottom:50px;
+        margin-top:30px;
+        background-color: #fff;
+
+    }
 </style>
 
 <script>
+    import {WxcTabPage, WxcPanItem, Utils, BindEnv} from 'weex-ui';
     import WxcItem from './wxc-item.vue';
+    import { zoneList } from '../services/article'
+    export default{
+        components: {WxcTabPage, WxcPanItem, WxcItem},
+        data : () =>({
+            user: {},
+            city:'chongqing',
+            zoneData:[{
+                picture:'',
+                title:'',
+                des:'',
+                icon:'',
+                address:'',
+                people:null
+            }]
+        }),
+        created(){
+            zoneList({city: this.city}, (data) => {
+                this.zoneData = data.data
+                console.log(data.data)
+            }, (data) => {
+                console.log('获取圈子出错', data)
+            })
+        },
+        methods:{
 
+        }
+    }
 </script>
