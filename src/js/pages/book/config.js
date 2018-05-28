@@ -31,6 +31,6 @@ export const tabConfig = [{
     activeicon: '\ue603',
     name: "统计",
     key: 'shop',
-    src: `${weex.config.eros.jsServer}/dist/js/pages/book/home/index.js`,
+    src: `${weex.config.eros.jsServer}/dist/js/pages/book/user/index.js`,
     visibility: 'hidden'
 }]

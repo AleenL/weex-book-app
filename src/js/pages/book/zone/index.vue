@@ -25,7 +25,7 @@
 
 </template>
 
-<style>
+<style scoped>
     .iconfont {
         font-family: iconfont;
     }
@@ -94,8 +94,7 @@
         margin-right: 10px;
     }
     .item-container{
-        padding-bottom:50px;
-        margin-top:30px;
+        padding-bottom:90px;
         background-color: #fff;
 
     }

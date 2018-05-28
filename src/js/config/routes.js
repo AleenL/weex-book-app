@@ -13,6 +13,10 @@ export default {
       title:'',
       url: '/pages/book/zone/index.js'
     },
+  'user':{
+    title:'',
+    url: '/pages/book/user/index.js'
+  },
     'regist': {
         title: '即刻注册',
         url: '/pages/book/regist/index.js',

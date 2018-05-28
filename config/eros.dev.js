@@ -14,6 +14,7 @@ module.exports = {
         'js/pages/book/home/index.vue',
         'js/pages/book/bannerArticle/index.vue',
         'js/pages/book/zone/index.vue',
+        'js/pages/book/user/index.vue',
         // 'js/pages/demo/lifecycle/index.vue',
         // 'js/pages/demo/assets/index.vue',
         // 'js/pages/demo/globalAttr/index.vue',
@@ -33,7 +34,8 @@ module.exports = {
         // 'js/pages/demo/other/bindingx.vue',
         // 'js/pages/demo/other/weexui.vue',
         // 'js/pages/demo/other/bui.vue'
-        'js/pages/book/main.vue'
+        'js/pages/book/main.vue',
+
     ],
     'alias': {
         'Components': 'js/components',
