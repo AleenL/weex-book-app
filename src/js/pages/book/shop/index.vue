@@ -1,5 +1,5 @@
 <template>
-    <scroller>
+    <scroller @scroll="recylerScroll">
         <div class="wrapper">
             <div class="header">
                 <text class="bar-ic iconfont">&#xe694;</text>
@@ -27,6 +27,21 @@
                     <image class="image-content" resize="cover" :src="img.src"></image>
                 </div>
             </div>
+            <div class='shop-title' :class="[contentOffset == -800 ? 'padding_120' : '']">
+                <wxc-tab-page ref="wxc-tab-page" :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="text"
+                              :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="110" :spm-c="4307989"
+                              @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
+                </wxc-tab-page>
+            </div>
+            <div v-for="(v,index) in dataList" :key="index" class="item-container">
+
+                <div class="cell" :key="key" :accessible="true">
+                    <wxc-pan-item  @wxcPanItemPan="wxcPanItemPan">
+                        <wxc-item  :nickName="v.bookBelong.nickName" :icon="v.bookBelong.zoneIcon" :bookName="v.bookInfo.bookName"
+                        :sell="v.price" :want="v.want" :des="v.des" :bookImage="v.bookInfo.bookImage" :address="v.bookBelong.address" :avatar="v.bookBelong.avatar"/>
+                    </wxc-pan-item>
+                </div>
+            </div>
         </div>
     </scroller>
 </template>
@@ -44,8 +59,7 @@
         border-radius: 2px;
         font-size: 26px;
     }
-
-    .bar-ic {
+.bar-ic {
         font-size: 42px;
         font-weight: 900;
         color: #fff;
@@ -62,6 +76,9 @@
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
+        position:fixed;
+        top:0;
+
     }
 
     .image {
@@ -103,13 +120,11 @@
     .image-inter {
         width: 200px;
         height: 200px;
-        margin-bottom: 20px;
+        margin-bottom:20px;
     }
 
     .content-style {
-
         width: 750;
-
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
@@ -124,7 +139,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     .image-content {
@@ -141,13 +156,26 @@
         border-left-style: solid;
         border-left-width: 12px;
     }
+    .shop-title{
+        position: sticky;
+    }
+    .padding_120{
+        padding-top: 120px;
+    }
+    .item-container{
+        width: 750px;
+        background-color: #fff;
+    }
 </style>
 
 <script>
-    import {WxcSearchbar} from 'weex-ui'
-
+    const dom = weex.requireModule('dom');
+    import {WxcTabPage, WxcPanItem, Utils, BindEnv,WxcSearchbar} from 'weex-ui';
+    import { bookList } from '../services/shop'
+    import WxcItem from './wxc-item.vue';
+    import Config from './config'
     export default {
-        components: {WxcSearchbar},
+        components: {WxcSearchbar,WxcTabPage, WxcPanItem, WxcItem},
         data: () => ({
             value: '',
             imageList: [
@@ -155,6 +183,12 @@
                 {src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner/shopBanner2.png'},
                 {src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner/shopBanner3.png'}
             ],
+            tabTitles: Config.tabTitles,
+            tabStyles: Config.tabStyles,
+            isTabView: true,
+            needSlider: true,
+            tabPageHeight: 0,
+            contentOffset: 0,
             interList: [
                 {
                     src: "http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner/center_content_1.png",
@@ -175,11 +209,31 @@
                     src: 'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/banner/book2.png',
                     title: '大电影'
                 }
-            ]
+            ],
+            dataList:[]
         }),
+        created() {
+            bookList({style: 'hot'}, (data) => {
+                this.dataList = data.data
+            }, (data) => {
+                console.log('获取文章出错', data)
+            })
+        },
         methods: {
+            recylerScroll: function (e) {
+                this.contentOffset = e.contentOffset.y
+
+            },
             onchange(event) {
                 console.log(event.value)
+            },
+            wxcTabPageCurrentTabSelected(event){
+
+            },
+            wxcPanItemPan(e) {
+                if (BindEnv.supportsEBForAndroid()) {
+                    this.$refs['wxc-tab-page'].bindExp(e.element);
+                }
             },
             wxcSearchbarInputOnBlur() {
             },

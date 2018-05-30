@@ -140,22 +140,11 @@
             tabList: [],
             tabStyle: ['withBook', 'bookReview', 'activity'],
             needSlider: true,
-            demoList: [1, 2, 3, 4, 5, 6],
             supportSlide: true,
             isTabView: true,
             tabPageHeight: 0,
             contentOffset: 0,
-            dataList: [],
-            desc: [{
-                type: 'text',
-                value: '特价机票|班期:清明 3/27-4/2等',
-                theme: 'gray'
-            }],
-            tags: [{
-                type: 'tag',
-                value: '满100减20测试',
-                theme: 'yellow'
-            }]
+            dataList: []
         }),
         created() {
 
