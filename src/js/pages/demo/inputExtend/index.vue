@@ -24,11 +24,11 @@ export default {
 
       domModule.addRule('fontFace', {
         'fontFamily': 'iconfont2',
-        'src': 'url(\'bmlocal://iconfont/font_1469606063_76593.ttf\')'
+        'src': 'url(\'bmlocal://iconfont/iconfont.ttf\')'
       });
       domModule.addRule('fontFace', {
         'fontFamily': 'iconfont2',
-        'src': 'url(\'bmlocal://iconfont/font_1469606522_9417143.woff\')'
+        'src': 'url(\'bmlocal://iconfont/iconfont.woff\')'
       })
     }
 }

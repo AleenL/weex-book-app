@@ -18,7 +18,12 @@
                 </div>
             </div>
         </div>
-
+        <div class="user-items">
+            <div v-for='item in items' class="item">
+                <image :src="item.imgSrc" class="item-image"></image>
+                <text class="item-text">{{item.title}}</text>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -120,10 +125,36 @@
         line-height: 40px;
         text-align: center;
     }
+    .user-items{
+        width:700px;
+        height: 400px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .item{
+        width:170px;
+        height:220px;
+
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .item-image{
+        width:120px;
+        height:120px;
+        margin-bottom: 20px;
+    }
+    .item-text{
+        font-size: 28px;
+        color: #1d1d1d;
+    }
 </style>
 
 <script>
-    import util from '../utils/utils';
     import { userConfig }   from './config'
 
     export default{

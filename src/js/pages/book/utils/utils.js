@@ -7,11 +7,11 @@ let utilFunc = {
         let domModule = weex.requireModule('dom');
         domModule.addRule('fontFace', {
             'fontFamily': 'iconfont',
-            'src': 'url(\'bmlocal://iconfont/iconfont2.ttf\')'
+            'src': 'url(\'bmlocal://iconfont/iconfont.ttf\')'
         });
         domModule.addRule('fontFace', {
             'fontFamily': 'iconfont',
-            'src': 'url(\'bmlocal://iconfont/iconfont2.woff\')'
+            'src': 'url(\'bmlocal://iconfont/iconfont.woff\')'
         });
     },
     setBundleUrl(url, jsFile) {
