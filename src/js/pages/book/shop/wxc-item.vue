@@ -2,259 +2,179 @@
 
 <template>
     <div class="wxc-item">
-        <text>aa</text>
+        <div class="book-belong-info">
+            <image :src="avatar" class="avatar"></image>
+            <div class="book-belong-name">
+                <div class="belong-name">
+                    <text class="nickname">{{nickName}}</text>
+                    <image class="icon" :src="icon"></image>
+                </div>
+                <text class="book-name">《{{bookName}}》</text>
+            </div>
+            <div class="cost">
+                <text class="money-icon">￥</text>
+                <text class="cost-money">{{(price/1000).toFixed(1)}}元/周</text>
+            </div>
+        </div>
+        <div class="bookImage-container">
+            <div class="book-list" >
+                <div v-for="(item, index) in bookImage" :key="index" class="item-container" @click="openLightBox(index)">
+                    <image :src="item.src" class="image-item"></image>
+                </div>
+            </div>
+            <wxc-lightbox
+                    ref="wxc-lightbox"
+                    height="800"
+                    :show="show"
+                    :image-list="imageList"
+                    @wxcLightboxOverlayClicked="wxcLightboxOverlayClicked">
+            </wxc-lightbox>
+        </div>
+        <div class="des-box">
+            <text class="book-des">{{des}}</text>
+        </div>
+        <div class="bottom-text">
+            <text class="address">{{getTimeNumber(time)}}</text>
+            <text class="want">{{want}} 人想借</text>
+        </div>
     </div>
 </template>
 
 <style scoped>
     .wxc-item {
         width: 750px;
-        height: 500px;
+        height: 540px;
+        padding-left:20px;
+        padding-right:20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         flex-direction: column;
+        justify-content: flex-start;
+        margin-bottom: 10px;
+        background-color: #fff;
+    }
+
+
+    .book-belong-info{
         justify-content: center;
-        align-items: center;
+        align-items: flex-start;
+        flex-direction: row;
+        height:120px;
     }
 
-    .item-image-cover {
-        width: 700px;
-        height: 380px;
-        position: relative;
+    .book-belong-name{
+        width:400px;
+        margin-left: 20px;
+
     }
 
-    .status-bg {
-        position: absolute;
-        bottom: 40px;
-        right: 20px;
-        border-radius: 4px;
-    }
-
-    .status-color {
-        padding-top: 5px;
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-bottom: 5px;
-        color: #fff;
-        font-size: 24px;
-        font-weight: 900;
-    }
-
-    .opening {
-        background-color: #00C4D1;
-    }
-
-    .closed {
-        background-color: #ccc;
-    }
-
-    .item-image {
-        width: 700px;
-        height: 380px;
-        border-radius: 10px;
-    }
-
-    .image-desc {
-        position: absolute;
-        left: 24px;
-        top: 186px;
-        width: 198px;
-        height: 36px;
-        background-color: rgba(0, 0, 0, .8);
-        align-items: center;
-        justify-content: center;
-    }
-
-    .image-text {
-        font-size: 24px;
-        color: #ffffff;
-    }
-
-    .item-content {
-        flex: 1;
-        border-bottom-width: 1px;
-        border-bottom-color: #e0e0e0;
-        border-bottom-style: solid;
-        justify-content: space-between;
-        padding-top: 24px;
-        padding-right: 24px;
-        padding-bottom: 18px;
-    }
-
-    .item-text {
-        font-size: 28px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 40px;
-        width: 700px;
-        text-align: left;
-        color: #333333;
-        lines: 1;
-        text-overflow: ellipsis;
-    }
-
-    .activity-title {
-        font-size: 28px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 40px;
-        width: 600px;
-        text-align: left;
-        color: #333333;
-        lines: 1;
-        text-overflow: ellipsis;
-    }
-
-    .activity {
-        font-size: 28px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 40px;
-        width: 50px;
-        text-align: left;
-        color: #333333;
-        lines: 1;
-        text-overflow: ellipsis;
-    }
-
-    .item-text-des {
-        font-size: 22px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 60px;
-        width: 500px;
-        text-align: left;
-        color: #989898;
-        lines: 2;
-        text-overflow: ellipsis;
-    }
-
-    .item-address-des {
-        font-size: 22px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 60px;
-        width: 400px;
-        text-align: left;
-        color: #989898;
-        lines: 1;
-        text-overflow: ellipsis;
-    }
-
-    .cost-head {
-        font-size: 24px;
-        color: #FF4C42;
-        font-weight: 900;
-        margin-top: 8px;
-    }
-
-    .cost-show {
-        font-size: 32px;
-        color: #FF4C42;
-        font-weight: 900;
-    }
-
-    .item-text-anther {
-        font-size: 22px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-        height: 60px;
-        width: 150px;
-        text-align: right;
-        color: #515151;
-        lines: 1;
-        text-overflow: ellipsis;
-    }
-
-    .address {
-        color: #00CBD5;
-        width: 250px;
-    }
-
-    .anther-info {
-        width: 700px;
-        justify-content: space-between;
+    .belong-name{
+        width:400px;
+        height:40px;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: row;
     }
-
-    .activity-cost {
-        color: #FF4C42;
+    .book-name{
+        width:400px;
+        lines:1;
+        text-overflow: ellipsis;
         font-size: 30px;
-        width: 50px;
-        justify-content: flex-end;
-        align-content: flex-end;
-        flex-direction: row;
-
+        margin-top: 20px;
     }
 
-    .activity-info {
-        width: 700px;
+    .avatar{
+        width:100px;
+        height:100px;
+        border-radius: 5px;
+    }
+
+    .icon{
+        margin-left: 12px;
+        width:35px;
+        height:35px;
+    }
+
+    .nickname{
+        max-width:350px;
+        lines:1;
+        font-size: 28px;
+        text-overflow: ellipsis;
+    }
+    .cost{
+
         justify-content: space-between;
         align-items: center;
         flex-direction: row;
-        height: 50px;
     }
-
-    .item-price {
-        justify-content: space-between;
+    .money-icon{
+        font-size:26px;
+        color:#FF4C42
+    }
+    .cost-money{
+        font-size:32px;
+        color:#FF4C42;
+        font-weight: 700;
+    }
+    .book-list{
+        padding-top: 20px;
+        padding-bottom: 20px;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: row;
-        height: 36px;
     }
-
-    .price-num {
-        flex-direction: row;
-        align-items: center;
+    .item-container{
+        width:150px;
+        height:180px;
+        margin-right: 6px;
     }
-
-    .yen {
-        color: #FF5E00;
-        font-size: 24px;
-        line-height: 26px;
-        margin-right: 2px;
-        margin-top: 4px;
+    .image-item{
+        width:150px;
+        height:180px;
     }
-
-    .price {
-        color: #FF5E00;
-        font-size: 36px;
+    .book-des{
+        margin-top: 10px;
+        height:100px;
+        font-size: 28px;
         line-height: 40px;
+        lines:2;
+        text-overflow: ellipsis;
+        font-weight: 700;
+
+    }
+    .des-box{
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom-color: #ccc;
     }
 
-    .postfix {
-        font-size: 24px;
-        line-height: 28px;
-        color: #A5A5A5;
-        margin-top: 6px;
-        margin-left: 2px;
+    .bottom-text{
+        margin-top: 20px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        padding-left:10px;
+        padding-right: 10px;
     }
 
-    .category-tag {
-        padding-right: 16px;
-        padding-left: 12px;
-        height: 36px;
-        justify-content: center;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 24px;
-        background-color: #FFC900;
-        position: absolute;
-        top: 24px;
-        left: 24px;
+    .address{
+        font-size:28px;
+        color: #00C1D4;
     }
 
-    .tag-text {
-        color: #3d3d3d;
-        font-size: 22px;
-        line-height: 36px;
+    .want{
+        font-size: 28px;
+        color: #a1a1a1;
     }
-
 </style>
 
 <script>
     const expressionBinding = weex.requireModule('expressionBinding');
-    import {WxcRichText, WxcSpecialRichText, Utils} from 'weex-ui';
+    import {WxcRichText, WxcSpecialRichText, Utils, WxcLightbox} from 'weex-ui';
+    import { getTime } from '../data'
 
     export default {
-        components: {WxcRichText, WxcSpecialRichText},
+        components: {WxcRichText, WxcSpecialRichText,WxcLightbox},
         props: {
             avatar: {
                 type: [String, Array],
@@ -273,12 +193,12 @@
                 default: ""
             },
             bookImage: {
-                type: [String, Array],
-                default: ''
+                type:  Array,
+                default: []
             },
             des: {
                 type: [String, Number],
-                default: 0
+                default: ""
             },
             icon: {
                 type: String,
@@ -291,14 +211,48 @@
             want: {
                 type: [String, Number],
                 default: ''
+            },
+            price: {
+                type: Number,
+                default:0
+            },
+            time: {
+                type: String,
+                dafault: 0
             }
         },
         data: () => ({
-            yenSymbol: '\u00A5'
+            yenSymbol: '\u00A5',
+            show: false,
+            imageList:[],
+            createTime:''
         }),
+        created(){
+        
+        },
         computed: {
             isTitleString() {
                 return Utils.isString(this.title);
+            }
+        },
+        methods:{
+          getTimeNumber(time){
+            let timeNumber = new Date(this.time).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
+            let timeStrap = timeNumber.replace(/-/g,'/');
+            return getTime(new Date(timeStrap).getTime())
+            
+          },
+            openLightBox (index) {
+                let imageSrc = this.bookImage[index];
+                let imageList = this.bookImage.concat()
+                imageList.splice(index,1)
+                imageList.unshift(imageSrc)
+                this.imageList = imageList
+                this.show = true;
+            },
+            wxcLightboxOverlayClicked () {
+                // 无状态组件，需要在此次关闭
+                this.show = false;
             }
         }
     };

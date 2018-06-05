@@ -75,6 +75,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
     }
     .item-image-cover{
         width: 700px;

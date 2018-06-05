@@ -1,5 +1,5 @@
 <template>
-    <waterfall class="page" ref="waterfall" v-bind:style="{paddingBottom:padding}" :column-width="columnWidth"
+    <scroller class="page" ref="waterfall" v-bind:style="{paddingBottom:padding}" :column-width="columnWidth"
                :column-count="1" :column-gap="columnGap" :show-scrollbar="showScrollbar" :scrollable="scrollable"
                @scroll="recylerScroll" @loadmore="loadmore" loadmoreoffset=3000>
         <!-- <refresh class="refresh" @refresh="onrefresh" @pullingdown="onpullingdown" :display="refreshing ? 'show' : 'hide'">
@@ -18,13 +18,20 @@
         </div>
 
         <div>
+            <div >
+                <wxc-tab-page class="aa" ref="wxc-tab-page" :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="icon"
+                              :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="110"
+                              :spm-c="4307989" @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
+                </wxc-tab-page>
+            </div>
+
             <wxc-tab-page ref="wxc-tab-page" :tab-titles="tabTitles" :tab-styles="tabStyles" title-type="icon"
                           :needSlider="needSlider" :is-tab-view="isTabView" :tab-page-height="tabPageHeight"
                           :spm-c="4307989" @wxcTabPageCurrentTabSelected="wxcTabPageCurrentTabSelected">
-                <list show-scrollbar='' v-for="(v,index) in tabList" :key="index" class="item-container"
+                <div show-scrollbar='' v-for="(v,index) in tabList" :key="index" class="item-container"
                       :style="{ height: (tabPageHeight - tabStyles.height -90) +'px' }">
-                    <cell class="border-cell"></cell>
-                    <cell v-for="(demo,key) in v" class="cell" :key="key" :accessible="true"
+                    <div class="border-cell"></div>
+                    <div v-for="(demo,key) in v" class="cell" :key="key" :accessible="true"
                           aria-label="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游,价格219元">
                         <wxc-pan-item url="https://h5.m.taobao.com/trip/ticket/detail/index.html?scenicId=2675"
                                       @wxcPanItemPan="wxcPanItemPan">
@@ -33,8 +40,8 @@
                                 :image-text="tabTitles[index].title" title="卡片测试｜出发到九寨沟牟尼沟 温泉3天2晚纯玩跟团旅游" :desc="desc"
                                 :tags="tags" price="666" price-desc="月售58笔｜999+条评论"/>
                         </wxc-pan-item>
-                    </cell>
-                </list>
+                    </div>
+                </div>
             </wxc-tab-page>
         </div>
         <!-- <cell v-for="(item, index) in items" :key="item.src" class="cell" ref="index">
@@ -45,9 +52,13 @@
                 <text v-if="item.behaviourName" class="itemClickBehaviour"> {{item.behaviourName}}</text>
             </div>
         </cell> -->
-    </waterfall>
+    </scroller>
 </template>
 <style>
+    .aa{
+        height:100px;
+        position: sticky;
+    }
     .item-container {
         width: 750px;
         background-color: #fff;
@@ -234,7 +245,7 @@
                 tabStyles: Config.tabStyles,
                 tabList: [],
                 needSlider: true,
-                demoList: [1, 2, 3],
+                demoList: [1, 2, 3, 4, 5, 6, 7, 8],
                 supportSlide: true,
                 isTabView: true,
                 tabPageHeight: 1334,

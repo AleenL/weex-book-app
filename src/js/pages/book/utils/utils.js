@@ -11,7 +11,7 @@ let utilFunc = {
         });
         domModule.addRule('fontFace', {
             'fontFamily': 'iconfont',
-            'src': 'url(\'bmlocal://iconfont/iconfont.woff\')'
+            'src': 'url(\'//at.alicdn.com/t/font_676493_npl4op749k6v42t9.ttf\')'
         });
     },
     setBundleUrl(url, jsFile) {

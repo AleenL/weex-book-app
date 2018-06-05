@@ -1,23 +1,21 @@
-a<template>
-
-    <div>
-        <div class="wrapper">
-            <text class="title">注册与书</text>
-            <div class="cellbox">
-                <wxc-cell title="输入用户名" class="user-name cell"
-                          :cell-style="cellStyleObj"
-                          :has-arrow="false"
-                          :has-top-border="false"
-                          :has-bottom-border="false"
-                >
-                    <input placeholder="请输入用户名" class="inputs" type="text" v-model='userName'/>
-                </wxc-cell>
-                <wxc-cell title="输入密码" class="cell"
-                          :cell-style="cellStyleObj"
-                          :has-arrow="false"
-                          :has-top-border="false"
-                          :has-bottom-border="false"
-                >
+<template>
+  <div class="ud-user-register">
+    <div class="wrapper">
+    <text class="title">注册与书</text>
+    <div class="cellbox">
+    <wxc-cell title="输入用户名" class="user-name cell"
+      :cell-style="cellStyleObj"
+      :has-arrow="false"
+      :has-top-border="false"
+      :has-bottom-border="false"
+    >
+<input placeholder="请输入用户名" class="inputs" type="text" v-model='userName'/>
+</wxc-cell>
+<wxc-cell title="输入密码" class="cell"
+:cell-style="cellStyleObj"
+:has-arrow="false"
+:has-top-border="false"
+:has-bottom-border="false">
                     <input placeholder="请输入密码" class="inputs" type="password" v-model='spwd'/>
                 </wxc-cell>
 
@@ -37,68 +35,77 @@ a<template>
         </div>
     </div>
 </template>
-<style scoped >
-    .wrapper{
+<style scoped>
+    .wrapper {
         flex: 1;
         background-color: #ffffff;
     }
-    .title{
-        font-size:44px;
-        color:rgba(18,28,50,1);
-        line-height:150px;
+
+    .title {
+        font-size: 44px;
+        color: rgba(18, 28, 50, 1);
+        line-height: 150px;
         margin-bottom: 60px;
         text-align: center;
     }
-    .cellbox{
+
+    .cellbox {
         padding-left: 32px;
         box-sizing: border-box;
     }
-    .cell{
+
+    .cell {
         padding-left: 0px !important;
         border-bottom-style: solid;
         border-bottom-color: #ececec;
         border-bottom-width: 1px;
 
     }
-    .inputs{
+
+    .inputs {
         flex: 1;
         text-align: right;
         width: 600px;
         height: 70px;
         line-height: 70px;
         outline: none;
-        font-size:28px;
+        font-size: 28px;
     }
-    .btnbox{
+
+    .btnbox {
         padding: 0px 32px;
         margin-top: 150px;
         height: 80px;
     }
-    .btn{
+
+    .btn {
         background-color: #FF6F6F;
         height: 80px;
         line-height: 80px;
-        border-radius: 8px ;
-        font-size: 26px;  color: #FFFFFF;  letter-spacing: 3px;text-align: center;
+        border-radius: 8px;
+        font-size: 26px;
+        color: #FFFFFF;
+        letter-spacing: 3px;
+        text-align: center;
     }
 
 </style>
 <script>
-    import { WxcButton, WxcResult, WxcMinibar, WxcCell } from 'weex-ui'
-    import { registerSeller } from '../services/login'
+    import {WxcButton, WxcResult, WxcMinibar, WxcCell} from 'weex-ui'
+    import {registerSeller} from '../services/login'
 
     export default {
-        components: { WxcButton, WxcResult, WxcMinibar, WxcCell },
-        data () {
+        components: {WxcButton, WxcResult, WxcMinibar, WxcCell},
+        data() {
             return {
                 userName: '',
                 spwd: '',
                 respwd: '',
-                cellStyleObj:{paddingLeft:'0',height:'100px',paddingRight: '32px'}
+                cellStyleObj: {paddingLeft: '0', height: '100px', paddingRight: '32px'}
 
             }
         },
-        created () {
+        created() {
             //设置导航条中间区域
             this.$navigator.setCenterItem({
                 text: '',                  // 展示的文字 (和图片 二选一)
@@ -115,12 +122,12 @@ a<template>
         },
 
         methods: {
-            wxcCellClicked () {
+            wxcCellClicked() {
                 this.isShow = true
 
             },
-            goInfo () {
-                
+            goInfo() {
+
                 if (!this.spwd) {
                     this.$notice.toast({
                         message: '请填写密码!',
@@ -135,9 +142,9 @@ a<template>
                     })
                     return false
                 }
-                
+
                 registerSeller({username: this.userName, password: this.spwd, repassword: this.respwd}, (data) => {
-                    console.log('datad的内容是：',data)
+                    console.log('datad的内容是：', data)
                     this.$notice.toast({
                         message: '注册成功！',
                         duration: 1
