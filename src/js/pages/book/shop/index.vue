@@ -37,12 +37,13 @@
         >
         </wxc-tab-page>
       </div>
-      <div v-for="(v,index) in dataList" :key="index" class="item-container">
+      <div @click="goBook(index)" v-for="(v,index) in dataList" :key="index" class="item-container">
         <div class="cell" :key="key" :accessible="true">
           <wxc-pan-item @wxcPanItemPan="wxcPanItemPan">
             <wxc-item :nickName="v.bookBelong.nickName" :icon="v.bookBelong.zoneIcon"
                       :bookName="v.bookInfo.bookName"
                       :time='v.logTime'
+                      :bookId="v.bookId"
                       :sell="v.price" :want="v.want" :price="v.price" :des="v.des"
                       :bookImage="v.bookInfo.bookImage" :address="v.bookBelong.address"
                       :avatar="v.bookBelong.avatar"/>
@@ -286,6 +287,9 @@
         if (BindEnv.supportsEBForAndroid()) {
           this.$refs['wxc-tab-page'].bindExp(e.element);
         }
+      },
+      goBook(index){
+      
       },
       wxcSearchbarInputOnBlur() {
       },

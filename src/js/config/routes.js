@@ -42,6 +42,10 @@ export default {
     title: '',
     url: '/pages/book/main.js'
   },
+  'bookInfo':{
+    title:'商品详情',
+    url:'/pages/book/bookInfo/index.js'
+  },
   'demo': {
     title: 'weex-eros demo',
     url: '/pages/demo/index.js'

@@ -16,3 +16,11 @@ import http from '../utils/http'
 export function bookList ({ style }, successBack, errorBack) {
   http.postAjax('shopList', { style}, successBack, errorBack)
 }
+
+/**
+ * 获取单个书本的信息
+ */
+
+export function bookInfo({bookId}, successBack, errorBack){
+  http.postAjax('bookInfo', {bookId}, successBack, errorBack)
+}
