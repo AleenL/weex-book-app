@@ -5,7 +5,7 @@
         <div class="header-search">
           <text class="bar-ic iconfont">&#xe694;</text>
           <div class="inputBox">
-            <input type="text" :placeholder="padding" class="input" :autofocus=false value="" @change="onchange"
+            <input type="text" placeholder="搜索一下你想要的书吧" class="input" :autofocus=false value="" @change="onchange"
                    @input="oninput"/>
           </div>
           <text class="bar-ic iconfont">&#xe60f;</text>
