@@ -5,14 +5,7 @@
 let utilFunc = {
     initIconFont () {
         let domModule = weex.requireModule('dom');
-        domModule.addRule('fontFace', {
-            'fontFamily': 'iconfont',
-            'src': 'url(\'//at.alicdn.com/t/font_676493_npl4op749k6v42t9.ttf\')'
-        });
-        domModule.addRule('fontFace', {
-            'fontFamily': 'iconfont',
-            'src': 'url(\'//at.alicdn.com/t/font_676493_npl4op749k6v42t9.woff\')'
-        });
+       
     },
     setBundleUrl(url, jsFile) {
         const bundleUrl = url;

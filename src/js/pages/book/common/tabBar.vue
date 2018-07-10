@@ -38,7 +38,7 @@ export default {
         const domModule = weex.requireModule('dom');
         domModule.addRule('fontFace', {
             'fontFamily': 'iconfont',
-            'src': 'url(\'bmlocal://iconfont/iconfont.ttf\')'
+            'src': 'url(\'bmlocal://iconfont/iconfont6.ttf\')'
         });
     },
     created () {

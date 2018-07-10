@@ -43,7 +43,6 @@ export default {
     url: '/pages/book/main.js'
   },
   'bookInfo':{
-    title:'商品详情',
     url:'/pages/book/bookInfo/index.js'
   },
   'demo': {

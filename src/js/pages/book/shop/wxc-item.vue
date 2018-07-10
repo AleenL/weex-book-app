@@ -258,7 +258,6 @@
         let timeNumber = new Date(this.time).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
         let timeStrap = timeNumber.replace(/-/g, '/');
         return getTime(new Date(timeStrap).getTime())
-        
       },
       openLightBox(index) {
         let imageSrc = this.bookImage[index];

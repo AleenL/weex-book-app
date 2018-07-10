@@ -61,7 +61,7 @@ export default {
 
         domModule.addRule('fontFace', {
             fontFamily: 'iconfont-eros',
-            'src': 'url(\'bmlocal://iconfont/iconfont-eros.ttf\')'
+            'src': 'url(\'bmlocal://iconfont/iconfont.ttf\')'
         });
     },
     created () {
