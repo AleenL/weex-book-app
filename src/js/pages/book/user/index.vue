@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="user-items">
-            <div v-for='item in items' class="item">
+            <div v-for='item in items' class="item" @click="goSearch(item.name)">
                 <image :src="item.imgSrc" class="item-image"></image>
                 <text class="item-text">{{item.title}}</text>
             </div>
@@ -162,6 +162,13 @@
             return {
                 items: userConfig,
             }
+        },
+      methods:{
+        goSearch(name){
+          this.$router.open({
+            name:name
+          })
         }
+      }
     }
 </script>

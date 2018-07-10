@@ -45,6 +45,9 @@ export default {
   'bookInfo':{
     url:'/pages/book/bookInfo/index.js'
   },
+  'message':{
+    url:'/pages/book/message/message.js'
+  },
   'demo': {
     title: 'weex-eros demo',
     url: '/pages/demo/index.js'
