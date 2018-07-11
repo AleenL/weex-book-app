@@ -7,12 +7,12 @@ export const userConfig=[{
       title: '账户',
       style:'userAccount',
       imgSrc:'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/activity/userAccount.png',
-  name:'message'
+  name:'regist'
     }, {
       title: '文章',
       style:'userArt',
       imgSrc:'http://lcimg.oss-cn-hangzhou.aliyuncs.com/video/activity/userArt.png',
-  name:'message'
+  name:'login'
     }, {
       title: '书架',
       style:'userBooks',

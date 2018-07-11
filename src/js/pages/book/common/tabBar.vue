@@ -17,14 +17,14 @@
 <script>
 export default {
     props: {
-        // indexKey: {
-        //     type: String,
-        //     default: 'home'
-        // },
-        // reClick: {
-        //     type: Boolean,
-        //     default: false
-        // },
+         indexKey: {
+             type: String,
+             default: 'home'
+         },
+         reClick: {
+             type: Boolean,
+             default: false
+         },
         items: {
             type: Array
         }
@@ -38,7 +38,7 @@ export default {
         const domModule = weex.requireModule('dom');
         domModule.addRule('fontFace', {
             'fontFamily': 'iconfont',
-            'src': 'url(\'bmlocal://iconfont/iconfont6.ttf\')'
+            'src': 'url(\'bmlocal://iconfont/iconfont.ttf\')'
         });
     },
     created () {

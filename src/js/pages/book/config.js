@@ -9,7 +9,7 @@ export const tabConfig = [{
   icon: '\ue60b',
   activeicon: '\ue60b',
   name: "圈子",
-  key: 'topic',
+  key: 'zone',
   src: `${weex.config.eros.jsServer}/dist/js/pages/book/zone/index.js`,
   visibility: 'hidden'
 }, {

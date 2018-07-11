@@ -13,7 +13,7 @@
             </div>
             <div class="jion-zone">
                 <text class="mine-zone">还没有加入一个圈子呢？快去看看呗……</text>
-                <div class="view-zone">
+                <div class="view-zone" @click="goZone()">
                     <text class="around-zone">逛一逛</text>
                 </div>
             </div>
@@ -167,6 +167,14 @@
         goSearch(name){
           this.$router.open({
             name:name
+          })
+        },
+        goZone(){
+          this.$emit('tabTo', {
+            status: 'tabTo',
+            data: {
+              key: 'shop'
+            }
           })
         }
       }

@@ -31,7 +31,6 @@ export default {
     url: '/pages/book/login/index.js'
   },
   "bannerArticle": {
-    title: ' ',
     url: '/pages/book/bannerArticle/index.js'
   },
   'home': {
