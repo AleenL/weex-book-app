@@ -18,6 +18,7 @@ module.exports = {
     'js/pages/book/shop/index.vue',
     'js/pages/book/bookInfo/index.vue',
     'js/pages/book/message/message.vue',
+		'js/pages/book/main.vue',
     // 'js/pages/demo/lifecycle/index.vue',
     // 'js/pages/demo/assets/index.vue',
     // 'js/pages/demo/globalAttr/index.vue',
@@ -37,7 +38,7 @@ module.exports = {
     // 'js/pages/demo/other/bindingx.vue',
     // 'js/pages/demo/other/weexui.vue',
     // 'js/pages/demo/other/bui.vue'
-    'js/pages/book/main.vue',
+    
 
   ],
   'alias': {
